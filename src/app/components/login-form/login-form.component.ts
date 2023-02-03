@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { User } from '../models/user.model';
 
@@ -10,7 +11,9 @@ import { User } from '../models/user.model';
 })
   export class LoginFormComponent  {
   //dependancy injection
-  constructor(private readonly loginService: LoginService){}
+  constructor(
+    private readonly router:Router,
+    private readonly loginService: LoginService){}
   
   public loginSubmit(loginForm:NgForm): void {
     //username
@@ -18,7 +21,7 @@ import { User } from '../models/user.model';
     this.loginService.login(username)
     .subscribe({
       next: (user:User)=>{
-
+        this.router.navigateByUrl("/pokemons")
       },
       error:() => {
 
