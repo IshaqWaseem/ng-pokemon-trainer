@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-import { User } from '../models/user.model';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-login-form',
@@ -10,9 +10,10 @@ import { User } from '../models/user.model';
   styleUrls: ['./login-form.component.css']
 })
   export class LoginFormComponent  {
+    @Output() login:EventEmitter<void> = new EventEmitter();
   //dependancy injection
   constructor(
-    private readonly router:Router,
+    private readonly userService: UserService,
     private readonly loginService: LoginService){}
   
   public loginSubmit(loginForm:NgForm): void {
@@ -21,7 +22,8 @@ import { User } from '../models/user.model';
     this.loginService.login(username)
     .subscribe({
       next: (user:User)=>{
-        this.router.navigateByUrl("/pokemons")
+        this.userService.user=user;
+        this.login.emit()
       },
       error:() => {
 

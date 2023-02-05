@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../components/models/user.model';
+import { User } from '../models/user.model';
 import { StorageKeys } from '../enums/storage-keys.enum';
 import { StorageUtil } from '../utils/storage.util';
 
@@ -13,6 +13,7 @@ export class UserService {
     return this._user
   }
   set user(user:User | undefined){
+    StorageUtil.storageSave<User>(StorageKeys.User,user!);
     this._user = user;
   }
 

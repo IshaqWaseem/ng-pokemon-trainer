@@ -1,4 +1,4 @@
-export interface pokemon {
+export interface Pokemon {
     id:string;
     name:string;
 
