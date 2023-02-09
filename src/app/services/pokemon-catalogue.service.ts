@@ -12,11 +12,11 @@ export class PokemonCatalogueService {
 
   constructor(private readonly http:HttpClient) { }
 
-  private _pokemons:Pokemon[] = [];
+  private _pokemons!: Pokemon;
   private _error:string="";
   private _loading:boolean = false;
 
-  get pokemons(): Pokemon[] {
+  get pokemons(): Pokemon {
     return this._pokemons;
   }
   get error(): string {
@@ -27,15 +27,16 @@ export class PokemonCatalogueService {
   }
   public findAllPokemons(): void {
     this._loading = true;
-    this.http.get<Pokemon[]>(apiPokemons)
+    this.http.get<Pokemon>(apiPokemons)
     .pipe(
       finalize(()=>{
         this._loading=false;
       })
     )
     .subscribe({
-      next:(pokemons:Pokemon[]) => {
+      next:(pokemons:Pokemon) => {
         this._pokemons = pokemons;
+        console.log(this._pokemons)
       },
       error:(error:HttpErrorResponse)=>{
         this._error=error.message;

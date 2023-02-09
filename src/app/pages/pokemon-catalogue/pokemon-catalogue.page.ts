@@ -9,7 +9,7 @@ import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.serv
 })
 export class PokemonCataloguePage implements OnInit {
 
-  get pokemons(): Pokemon[] {
+  get pokemons(): Pokemon {
     return this.pokemonCatalogueService.pokemons;
   }
   get loading(): boolean {

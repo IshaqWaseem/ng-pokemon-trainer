@@ -1,4 +1,7 @@
 <ul>
-  <li *ngFor="let pokemon of pokemons">
-    <span>{{pokemon.name}}</span></li>
+  <li *ngFor="let pokemon of pokemons.results">
+    {{pokemon.name}}
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.url.slice(-2,-1)}}.png">
+    
+  </li>
 </ul>
