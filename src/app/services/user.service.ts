@@ -3,6 +3,7 @@ import { User } from '../models/user.model';
 import { StorageKeys } from '../enums/storage-keys.enum';
 import { StorageUtil } from '../utils/storage.util';
 import { environment } from 'src/environments/environment';
+import { Result } from '../models/pokemon.model';
 const {apiTrainers,apiKey} = environment;
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class UserService {
   get user(): User | undefined {
     return this._user
   }
-  add(addedPokemonId:number):void{
+  add(pokemon:Result):void{
     if(!this._user){
       return}
       console.log("hihi")
@@ -25,7 +26,7 @@ export class UserService {
       },
       body: JSON.stringify({
           // Provide new Pokémon to add trainer with id 1
-          pokemon: [...this._user.pokemon,addedPokemonId] 
+          pokemon: [...this._user.pokemon,pokemon] 
       })
   })
   .then(response => {

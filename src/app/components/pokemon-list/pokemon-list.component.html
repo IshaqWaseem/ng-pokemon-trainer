@@ -1,9 +1,24 @@
 <ul>
   <li *ngFor="let pokemon of pokemons.results">
-    {{pokemon.name}}
-    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png">
-    <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" *ngIf="user?.pokemon?.includes(pokemon.id)">Add</button>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" (click)="addPokemon(pokemon.id)" *ngIf="!user?.pokemon?.includes(pokemon.id)">Add</button>
+    {{ user?.pokemon }}
+    {{ pokemon.name }}
+    <img
+      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{
+        pokemon.id
+      }}.png"
+    />
+    <button
+      class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+      *ngIf="user?.pokemon?.includes(pokemon)"
+    >
+      Add
+    </button>
+    <button
+      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      (click)="addPokemon(pokemon)"
+      *ngIf="!user?.pokemon.map(pokemon => pokemon.id).includes(pokemon.id)"
+    >
+      Add
+    </button>
   </li>
-  
 </ul>

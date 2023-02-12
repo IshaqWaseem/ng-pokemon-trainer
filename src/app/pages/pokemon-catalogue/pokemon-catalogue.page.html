@@ -1,5 +1,6 @@
 <main class="container mx-auto p-4">
     <p *ngIf="loading">Loading pokemons...</p>
+    
     <app-pokemon-list [user]="user" [pokemons]="pokemons"></app-pokemon-list>
     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" *ngIf="pokemons.previous!=null" (click)="navigatePokemons(pokemons.previous,-20)">prev</button>
     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" *ngIf="pokemons.next!=null" (click)="navigatePokemons(pokemons.next,20)">next</button>

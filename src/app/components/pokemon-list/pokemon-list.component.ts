@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { Component, Input } from '@angular/core';
-import { Pokemon } from 'src/app/models/pokemon.model';
+import { Pokemon, Result } from 'src/app/models/pokemon.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -11,8 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class PokemonListComponent implements OnInit {
 
-  public addPokemon(id:number){
-    this.userService.add(id);
+  public addPokemon(pokemon:Result){
+    this.userService.add(pokemon);
   }
   
   @Input()
