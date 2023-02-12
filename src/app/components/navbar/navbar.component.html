@@ -1,0 +1,14 @@
+<nav class="bg-yellow-500 flex justify-between items-center p-4 sticky top-0 w-full">
+    <span class="font-bold">pokemons</span>
+    <ng-container *ngIf="user!==undefined">
+
+        <ul>
+            <li class="px-4">
+                <a routerLink="/profile">Profile</a>
+            </li>
+            <li class="px-4">
+                <a routerLink="/pokemons">Catalogue</a>
+            </li>
+        </ul>
+    </ng-container>
+</nav>

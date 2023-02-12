@@ -8,6 +8,10 @@ import { PokemonCatalogueService } from 'src/app/services/pokemon-catalogue.serv
   styleUrls: ['./pokemon-catalogue.page.css'],
 })
 export class PokemonCataloguePage implements OnInit {
+  
+  navigatePokemons(url:any,jumpNumber:number) {
+  this.pokemonCatalogueService.navigatePokemons(url,jumpNumber);  
+  }
 
   get pokemons(): Pokemon {
     return this.pokemonCatalogueService.pokemons;

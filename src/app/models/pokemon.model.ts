@@ -1,6 +1,7 @@
 export interface Result {
     name: string;
     url: string;
+    id:number;
 }
 export interface Pokemon {
     count:number;

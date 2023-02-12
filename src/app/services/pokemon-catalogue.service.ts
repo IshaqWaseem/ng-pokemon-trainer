@@ -10,8 +10,9 @@ const {apiPokemons} = environment
 })
 export class PokemonCatalogueService {
 
+  
   constructor(private readonly http:HttpClient) { }
-
+  private _indexStart:number = 1
   private _pokemons!: Pokemon;
   private _error:string="";
   private _loading:boolean = false;
@@ -35,12 +36,32 @@ export class PokemonCatalogueService {
     )
     .subscribe({
       next:(pokemons:Pokemon) => {
+        pokemons["results"]=pokemons.results.map((pokemon,i)=>{return {...pokemon,id:i+1}})
         this._pokemons = pokemons;
-        console.log(this._pokemons)
       },
       error:(error:HttpErrorResponse)=>{
         this._error=error.message;
       }
     })
   }
+  public navigatePokemons(url:any,jumpNumber:number): void {
+    this._loading = true;
+    this.http.get<Pokemon>(url)
+    .pipe(
+      finalize(()=>{
+        this._loading=false;
+      })
+    )
+    .subscribe({
+      next:(pokemons:Pokemon) => {
+        this._indexStart += jumpNumber;
+        pokemons["results"] = pokemons.results.map((pokemon, i) => {return {...pokemon, id: i+this._indexStart}})
+        this._pokemons = pokemons
+      },
+      error:(error:HttpErrorResponse)=>{
+        this._error=error.message;
+      }
+    })
+  }
+
 }
