@@ -10,9 +10,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
+  //maps JSON object and compares IDs
   public hasPokemon(pokemon: Result){
     return (this.userService.user?.pokemon.map(p => p.id).includes(pokemon.id))
   }
+  //sends pokemon object to userService
   public addPokemon(pokemon:Result){
     this.userService.add(pokemon);
   }

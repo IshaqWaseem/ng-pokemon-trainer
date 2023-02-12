@@ -12,6 +12,7 @@ export class PokemonCatalogueService {
 
   
   constructor(private readonly http:HttpClient) { }
+  //index starts at 1 since pokeAPI also starts at 1
   private _indexStart:number = 1
   private _pokemons!: Pokemon;
   private _error:string="";
@@ -26,6 +27,7 @@ export class PokemonCatalogueService {
   get loading(): boolean {
     return this._loading;
   }
+  
   public findAllPokemons(): void {
     this._loading = true;
     this.http.get<Pokemon>(apiPokemons)
@@ -36,6 +38,7 @@ export class PokemonCatalogueService {
     )
     .subscribe({
       next:(pokemons:Pokemon) => {
+        //adds id property so it can be used to more easily display image and later add or remove pokemon from trainer object
         pokemons["results"]=pokemons.results.map((pokemon,i)=>{return {...pokemon,id:i+1}})
         this._pokemons = pokemons;
       },
@@ -44,6 +47,7 @@ export class PokemonCatalogueService {
       }
     })
   }
+  //the buttons send either +20 or -20 in the second parameter, this combined with the index variable lets us navigate
   public navigatePokemons(url:any,jumpNumber:number): void {
     this._loading = true;
     this.http.get<Pokemon>(url)

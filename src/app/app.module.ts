@@ -11,6 +11,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProfileListComponent } from './components/profile-list/profile-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ProfilePage,
     LoginFormComponent,
     PokemonListComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfileListComponent
   ],
   imports: [
     BrowserModule,
